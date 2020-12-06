@@ -1,16 +1,21 @@
-# lyrics_guru
+# Lyrics Guru
 
-A new Flutter project.
+Learn to better understand lyrics of your favourite songs. 
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Synchronise library with your spotify account
+- Better understand lyrics by learning meaning of unknown words
+- Play-style practices
+- Practice daily, complete challenges and earn achievments
 
-A few resources to get you started if this is your first Flutter project:
+## Realisation features
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- firebase authentication
+- moor database, runs in separate isolate
+- database access through get_it
+- state management with riverpod
+- flutter_hooks
+- self-made plugin to work with native features (spotify plugin)
+- nested navigators with page state keep-alive
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
