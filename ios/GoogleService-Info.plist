@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>500365505683-vojdpg1mcpnhb310jnbh7olnidptfgn4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.500365505683-vojdpg1mcpnhb310jnbh7olnidptfgn4</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>500365505683-2vlh91qv9asbtln45f18kt7an2qgb5pj.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAAG4JE7JCZEHGDV-XA11jXHUymVVJpZ0E</string>
+	<key>GCM_SENDER_ID</key>
+	<string>500365505683</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.lyricsGuru</string>
+	<key>PROJECT_ID</key>
+	<string>lyrics-guru-adfbe</string>
+	<key>STORAGE_BUCKET</key>
+	<string>lyrics-guru-adfbe.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:500365505683:ios:f5c9b10be0718b322f4966</string>
+	<key>DATABASE_URL</key>
+	<string>https://lyrics-guru-adfbe.firebaseio.com</string>
+</dict>
+</plist>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "500365505683",
+    "firebase_url": "https://lyrics-guru-adfbe.firebaseio.com",
+    "project_id": "lyrics-guru-adfbe",
+    "storage_bucket": "lyrics-guru-adfbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500365505683:android:af21381d2ab97e3a2f4966",
+        "android_client_info": {
+          "package_name": "com.example.lyrics_guru"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500365505683-2vlh91qv9asbtln45f18kt7an2qgb5pj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lyrics_guru",
+            "certificate_hash": "9e191bfc56abb80e1659e5301e0f75a8a09050a3"
+          }
+        },
+        {
+          "client_id": "500365505683-5ch80smifsj78mq3j166oldl5u08rif5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdhqMPtD03vczZA14rDfSaBvz-vEAPCx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500365505683-5ch80smifsj78mq3j166oldl5u08rif5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "500365505683-45nistbr93rab71qhih9labb4a7f579d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutter.lyricsGuru"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
