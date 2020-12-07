@@ -1266,6 +1266,445 @@ class $UserInfosTable extends UserInfos
   }
 }
 
+class WordInfo extends DataClass implements Insertable<WordInfo> {
+  final String word;
+  final String definition;
+  final int progress;
+  WordInfo({@required this.word, this.definition, @required this.progress});
+  factory WordInfo.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+      {String prefix}) {
+    final effectivePrefix = prefix ?? '';
+    final stringType = db.typeSystem.forDartType<String>();
+    final intType = db.typeSystem.forDartType<int>();
+    return WordInfo(
+      word: stringType.mapFromDatabaseResponse(data['${effectivePrefix}word']),
+      definition: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}definition']),
+      progress:
+          intType.mapFromDatabaseResponse(data['${effectivePrefix}progress']),
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (!nullToAbsent || word != null) {
+      map['word'] = Variable<String>(word);
+    }
+    if (!nullToAbsent || definition != null) {
+      map['definition'] = Variable<String>(definition);
+    }
+    if (!nullToAbsent || progress != null) {
+      map['progress'] = Variable<int>(progress);
+    }
+    return map;
+  }
+
+  WordInfosCompanion toCompanion(bool nullToAbsent) {
+    return WordInfosCompanion(
+      word: word == null && nullToAbsent ? const Value.absent() : Value(word),
+      definition: definition == null && nullToAbsent
+          ? const Value.absent()
+          : Value(definition),
+      progress: progress == null && nullToAbsent
+          ? const Value.absent()
+          : Value(progress),
+    );
+  }
+
+  factory WordInfo.fromJson(Map<String, dynamic> json,
+      {ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return WordInfo(
+      word: serializer.fromJson<String>(json['word']),
+      definition: serializer.fromJson<String>(json['definition']),
+      progress: serializer.fromJson<int>(json['progress']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'word': serializer.toJson<String>(word),
+      'definition': serializer.toJson<String>(definition),
+      'progress': serializer.toJson<int>(progress),
+    };
+  }
+
+  WordInfo copyWith({String word, String definition, int progress}) => WordInfo(
+        word: word ?? this.word,
+        definition: definition ?? this.definition,
+        progress: progress ?? this.progress,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('WordInfo(')
+          ..write('word: $word, ')
+          ..write('definition: $definition, ')
+          ..write('progress: $progress')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => $mrjf(
+      $mrjc(word.hashCode, $mrjc(definition.hashCode, progress.hashCode)));
+  @override
+  bool operator ==(dynamic other) =>
+      identical(this, other) ||
+      (other is WordInfo &&
+          other.word == this.word &&
+          other.definition == this.definition &&
+          other.progress == this.progress);
+}
+
+class WordInfosCompanion extends UpdateCompanion<WordInfo> {
+  final Value<String> word;
+  final Value<String> definition;
+  final Value<int> progress;
+  const WordInfosCompanion({
+    this.word = const Value.absent(),
+    this.definition = const Value.absent(),
+    this.progress = const Value.absent(),
+  });
+  WordInfosCompanion.insert({
+    @required String word,
+    this.definition = const Value.absent(),
+    @required int progress,
+  })  : word = Value(word),
+        progress = Value(progress);
+  static Insertable<WordInfo> custom({
+    Expression<String> word,
+    Expression<String> definition,
+    Expression<int> progress,
+  }) {
+    return RawValuesInsertable({
+      if (word != null) 'word': word,
+      if (definition != null) 'definition': definition,
+      if (progress != null) 'progress': progress,
+    });
+  }
+
+  WordInfosCompanion copyWith(
+      {Value<String> word, Value<String> definition, Value<int> progress}) {
+    return WordInfosCompanion(
+      word: word ?? this.word,
+      definition: definition ?? this.definition,
+      progress: progress ?? this.progress,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (word.present) {
+      map['word'] = Variable<String>(word.value);
+    }
+    if (definition.present) {
+      map['definition'] = Variable<String>(definition.value);
+    }
+    if (progress.present) {
+      map['progress'] = Variable<int>(progress.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('WordInfosCompanion(')
+          ..write('word: $word, ')
+          ..write('definition: $definition, ')
+          ..write('progress: $progress')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $WordInfosTable extends WordInfos
+    with TableInfo<$WordInfosTable, WordInfo> {
+  final GeneratedDatabase _db;
+  final String _alias;
+  $WordInfosTable(this._db, [this._alias]);
+  final VerificationMeta _wordMeta = const VerificationMeta('word');
+  GeneratedTextColumn _word;
+  @override
+  GeneratedTextColumn get word => _word ??= _constructWord();
+  GeneratedTextColumn _constructWord() {
+    return GeneratedTextColumn(
+      'word',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _definitionMeta = const VerificationMeta('definition');
+  GeneratedTextColumn _definition;
+  @override
+  GeneratedTextColumn get definition => _definition ??= _constructDefinition();
+  GeneratedTextColumn _constructDefinition() {
+    return GeneratedTextColumn(
+      'definition',
+      $tableName,
+      true,
+    );
+  }
+
+  final VerificationMeta _progressMeta = const VerificationMeta('progress');
+  GeneratedIntColumn _progress;
+  @override
+  GeneratedIntColumn get progress => _progress ??= _constructProgress();
+  GeneratedIntColumn _constructProgress() {
+    return GeneratedIntColumn(
+      'progress',
+      $tableName,
+      false,
+    );
+  }
+
+  @override
+  List<GeneratedColumn> get $columns => [word, definition, progress];
+  @override
+  $WordInfosTable get asDslTable => this;
+  @override
+  String get $tableName => _alias ?? 'word_infos';
+  @override
+  final String actualTableName = 'word_infos';
+  @override
+  VerificationContext validateIntegrity(Insertable<WordInfo> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('word')) {
+      context.handle(
+          _wordMeta, word.isAcceptableOrUnknown(data['word'], _wordMeta));
+    } else if (isInserting) {
+      context.missing(_wordMeta);
+    }
+    if (data.containsKey('definition')) {
+      context.handle(
+          _definitionMeta,
+          definition.isAcceptableOrUnknown(
+              data['definition'], _definitionMeta));
+    }
+    if (data.containsKey('progress')) {
+      context.handle(_progressMeta,
+          progress.isAcceptableOrUnknown(data['progress'], _progressMeta));
+    } else if (isInserting) {
+      context.missing(_progressMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {word};
+  @override
+  WordInfo map(Map<String, dynamic> data, {String tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
+    return WordInfo.fromData(data, _db, prefix: effectivePrefix);
+  }
+
+  @override
+  $WordInfosTable createAlias(String alias) {
+    return $WordInfosTable(_db, alias);
+  }
+}
+
+class WordTrackRef extends DataClass implements Insertable<WordTrackRef> {
+  final String word;
+  final String trackId;
+  WordTrackRef({@required this.word, @required this.trackId});
+  factory WordTrackRef.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+      {String prefix}) {
+    final effectivePrefix = prefix ?? '';
+    final stringType = db.typeSystem.forDartType<String>();
+    return WordTrackRef(
+      word: stringType.mapFromDatabaseResponse(data['${effectivePrefix}word']),
+      trackId: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}track_id']),
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (!nullToAbsent || word != null) {
+      map['word'] = Variable<String>(word);
+    }
+    if (!nullToAbsent || trackId != null) {
+      map['track_id'] = Variable<String>(trackId);
+    }
+    return map;
+  }
+
+  WordTrackRefsCompanion toCompanion(bool nullToAbsent) {
+    return WordTrackRefsCompanion(
+      word: word == null && nullToAbsent ? const Value.absent() : Value(word),
+      trackId: trackId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(trackId),
+    );
+  }
+
+  factory WordTrackRef.fromJson(Map<String, dynamic> json,
+      {ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return WordTrackRef(
+      word: serializer.fromJson<String>(json['word']),
+      trackId: serializer.fromJson<String>(json['trackId']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'word': serializer.toJson<String>(word),
+      'trackId': serializer.toJson<String>(trackId),
+    };
+  }
+
+  WordTrackRef copyWith({String word, String trackId}) => WordTrackRef(
+        word: word ?? this.word,
+        trackId: trackId ?? this.trackId,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('WordTrackRef(')
+          ..write('word: $word, ')
+          ..write('trackId: $trackId')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => $mrjf($mrjc(word.hashCode, trackId.hashCode));
+  @override
+  bool operator ==(dynamic other) =>
+      identical(this, other) ||
+      (other is WordTrackRef &&
+          other.word == this.word &&
+          other.trackId == this.trackId);
+}
+
+class WordTrackRefsCompanion extends UpdateCompanion<WordTrackRef> {
+  final Value<String> word;
+  final Value<String> trackId;
+  const WordTrackRefsCompanion({
+    this.word = const Value.absent(),
+    this.trackId = const Value.absent(),
+  });
+  WordTrackRefsCompanion.insert({
+    @required String word,
+    @required String trackId,
+  })  : word = Value(word),
+        trackId = Value(trackId);
+  static Insertable<WordTrackRef> custom({
+    Expression<String> word,
+    Expression<String> trackId,
+  }) {
+    return RawValuesInsertable({
+      if (word != null) 'word': word,
+      if (trackId != null) 'track_id': trackId,
+    });
+  }
+
+  WordTrackRefsCompanion copyWith({Value<String> word, Value<String> trackId}) {
+    return WordTrackRefsCompanion(
+      word: word ?? this.word,
+      trackId: trackId ?? this.trackId,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (word.present) {
+      map['word'] = Variable<String>(word.value);
+    }
+    if (trackId.present) {
+      map['track_id'] = Variable<String>(trackId.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('WordTrackRefsCompanion(')
+          ..write('word: $word, ')
+          ..write('trackId: $trackId')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $WordTrackRefsTable extends WordTrackRefs
+    with TableInfo<$WordTrackRefsTable, WordTrackRef> {
+  final GeneratedDatabase _db;
+  final String _alias;
+  $WordTrackRefsTable(this._db, [this._alias]);
+  final VerificationMeta _wordMeta = const VerificationMeta('word');
+  GeneratedTextColumn _word;
+  @override
+  GeneratedTextColumn get word => _word ??= _constructWord();
+  GeneratedTextColumn _constructWord() {
+    return GeneratedTextColumn(
+      'word',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _trackIdMeta = const VerificationMeta('trackId');
+  GeneratedTextColumn _trackId;
+  @override
+  GeneratedTextColumn get trackId => _trackId ??= _constructTrackId();
+  GeneratedTextColumn _constructTrackId() {
+    return GeneratedTextColumn(
+      'track_id',
+      $tableName,
+      false,
+    );
+  }
+
+  @override
+  List<GeneratedColumn> get $columns => [word, trackId];
+  @override
+  $WordTrackRefsTable get asDslTable => this;
+  @override
+  String get $tableName => _alias ?? 'word_track_refs';
+  @override
+  final String actualTableName = 'word_track_refs';
+  @override
+  VerificationContext validateIntegrity(Insertable<WordTrackRef> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('word')) {
+      context.handle(
+          _wordMeta, word.isAcceptableOrUnknown(data['word'], _wordMeta));
+    } else if (isInserting) {
+      context.missing(_wordMeta);
+    }
+    if (data.containsKey('track_id')) {
+      context.handle(_trackIdMeta,
+          trackId.isAcceptableOrUnknown(data['track_id'], _trackIdMeta));
+    } else if (isInserting) {
+      context.missing(_trackIdMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {word, trackId};
+  @override
+  WordTrackRef map(Map<String, dynamic> data, {String tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
+    return WordTrackRef.fromData(data, _db, prefix: effectivePrefix);
+  }
+
+  @override
+  $WordTrackRefsTable createAlias(String alias) {
+    return $WordTrackRefsTable(_db, alias);
+  }
+}
+
 abstract class _$LyricsGuruDB extends GeneratedDatabase {
   _$LyricsGuruDB(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   _$LyricsGuruDB.connect(DatabaseConnection c) : super.connect(c);
@@ -1277,6 +1716,11 @@ abstract class _$LyricsGuruDB extends GeneratedDatabase {
   $TrackInfosTable get trackInfos => _trackInfos ??= $TrackInfosTable(this);
   $UserInfosTable _userInfos;
   $UserInfosTable get userInfos => _userInfos ??= $UserInfosTable(this);
+  $WordInfosTable _wordInfos;
+  $WordInfosTable get wordInfos => _wordInfos ??= $WordInfosTable(this);
+  $WordTrackRefsTable _wordTrackRefs;
+  $WordTrackRefsTable get wordTrackRefs =>
+      _wordTrackRefs ??= $WordTrackRefsTable(this);
   ArtistInfoDao _artistInfoDao;
   ArtistInfoDao get artistInfoDao =>
       _artistInfoDao ??= ArtistInfoDao(this as LyricsGuruDB);
@@ -1289,11 +1733,20 @@ abstract class _$LyricsGuruDB extends GeneratedDatabase {
   UserInfoDao _userInfoDao;
   UserInfoDao get userInfoDao =>
       _userInfoDao ??= UserInfoDao(this as LyricsGuruDB);
+  WordInfoDao _wordInfoDao;
+  WordInfoDao get wordInfoDao =>
+      _wordInfoDao ??= WordInfoDao(this as LyricsGuruDB);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [artistInfos, albumInfos, trackInfos, userInfos];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [
+        artistInfos,
+        albumInfos,
+        trackInfos,
+        userInfos,
+        wordInfos,
+        wordTrackRefs
+      ];
 }
 
 // **************************************************************************
@@ -1311,4 +1764,8 @@ mixin _$TrackInfoDaoMixin on DatabaseAccessor<LyricsGuruDB> {
 }
 mixin _$UserInfoDaoMixin on DatabaseAccessor<LyricsGuruDB> {
   $UserInfosTable get userInfos => attachedDatabase.userInfos;
+}
+mixin _$WordInfoDaoMixin on DatabaseAccessor<LyricsGuruDB> {
+  $WordInfosTable get wordInfos => attachedDatabase.wordInfos;
+  $WordTrackRefsTable get wordTrackRefs => attachedDatabase.wordTrackRefs;
 }

@@ -16,7 +16,7 @@ class AlbumScreenViewModel extends ChangeNotifier {
   Album _album;
   Album get album => _album;
 
-  final _trackProvider = db<TrackInfoDao>();
+  final _trackDao = db<TrackInfoDao>();
 
   AlbumScreenViewModel(Album album) {
     _album = album;
@@ -24,7 +24,9 @@ class AlbumScreenViewModel extends ChangeNotifier {
   }
 
   void loadData() async {
-    _tracks = await _trackProvider.getTracksOfAlbum(album);
-    notifyListeners();
+    _trackDao.watchTracksOfAlbum(_album).listen((updatedList) {
+      _tracks = updatedList;
+      notifyListeners();
+    });
   }
 }

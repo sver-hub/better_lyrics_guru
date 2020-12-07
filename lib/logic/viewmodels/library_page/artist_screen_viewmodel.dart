@@ -27,7 +27,9 @@ class ArtistScreenViewModel extends ChangeNotifier {
   set sortAsc(bool val) => {if (val != _sortAsc) _albums = _albums.reversed};
 
   void loadData() async {
-    _albums = await _albumDao.getAlbumsOfArtist(_artist);
-    notifyListeners();
+    _albumDao.watchAlbumsOfArtist(_artist).listen((updatedList) {
+      _albums = updatedList;
+      notifyListeners();
+    });
   }
 }

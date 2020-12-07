@@ -16,7 +16,7 @@ final libraryScreenViewModel =
 });
 
 class LibraryScreenViewModel extends ChangeNotifier {
-  final _artistProvider = db<ArtistInfoDao>();
+  final _artistDao = db<ArtistInfoDao>();
   final LibraryService _libraryService;
   final StateController<AppState> _appState;
 
@@ -28,7 +28,7 @@ class LibraryScreenViewModel extends ChangeNotifier {
   }
 
   void loadData() async {
-    _artistProvider.watchAllArtists().listen((updatedList) {
+    _artistDao.watchAllArtists().listen((updatedList) {
       _artists = updatedList;
       notifyListeners();
     });

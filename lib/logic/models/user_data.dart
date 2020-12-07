@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:moor/moor.dart';
 
-import '../../database/moor_database.dart';
-
 class UserData {
   final uid;
   final email;
@@ -17,15 +15,6 @@ class UserData {
     this.imgUrl,
     this.refreshToken,
   });
-
-  UserInfosCompanion get asUserInfo => UserInfosCompanion(
-        uid: uid != null ? Value(uid) : Value.absent(),
-        email: email != null ? Value(email) : Value.absent(),
-        name: name != null ? Value(name) : Value.absent(),
-        imgUrl: imgUrl != null ? Value(imgUrl) : Value.absent(),
-        refreshToken:
-            refreshToken != null ? Value(refreshToken) : Value.absent(),
-      );
 
   UserData copyWith(
           {String uid,

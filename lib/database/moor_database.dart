@@ -4,6 +4,7 @@ import 'package:lyrics_guru/logic/models/album.dart';
 import 'package:lyrics_guru/logic/models/artist.dart';
 import 'package:lyrics_guru/logic/models/track.dart';
 import 'package:lyrics_guru/logic/models/user_data.dart';
+import 'package:lyrics_guru/logic/models/word.dart';
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
 import 'package:path_provider/path_provider.dart';
@@ -14,6 +15,7 @@ part 'daos/artist_dao.dart';
 part 'daos/album_dao.dart';
 part 'daos/track_dao.dart';
 part 'daos/user_dao.dart';
+part 'daos/word_dao.dart';
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
@@ -23,9 +25,20 @@ LazyDatabase _openConnection() {
   });
 }
 
-@UseMoor(
-    tables: [ArtistInfos, AlbumInfos, TrackInfos, UserInfos],
-    daos: [ArtistInfoDao, AlbumInfoDao, TrackInfoDao, UserInfoDao])
+@UseMoor(tables: [
+  ArtistInfos,
+  AlbumInfos,
+  TrackInfos,
+  UserInfos,
+  WordInfos,
+  WordTrackRefs,
+], daos: [
+  ArtistInfoDao,
+  AlbumInfoDao,
+  TrackInfoDao,
+  UserInfoDao,
+  WordInfoDao,
+])
 class LyricsGuruDB extends _$LyricsGuruDB {
   LyricsGuruDB() : super(_openConnection());
 

@@ -11,13 +11,23 @@ class TrackInfos extends Table {
   Set<Column> get primaryKey => {id};
 }
 
-extension TrackExtension on TrackInfo {
+extension TrackInfoExtension on TrackInfo {
   Track asTrack({@required Album album}) => Track(
         id: id,
         name: name,
         trackNumber: trackNumber,
         lyrics: lyrics,
         album: album,
+      );
+}
+
+extension TrackExtension on Track {
+  TrackInfosCompanion get asTrackInfo => TrackInfosCompanion(
+        id: id != null ? Value(id) : Value.absent(),
+        name: name != null ? Value(name) : Value.absent(),
+        trackNumber: trackNumber != null ? Value(trackNumber) : Value.absent(),
+        lyrics: lyrics != null ? Value(lyrics) : Value.absent(),
+        albumId: album != null ? Value(album.id) : Value.absent(),
       );
 }
 
@@ -56,9 +66,9 @@ class TrackInfoDao extends DatabaseAccessor<LyricsGuruDB>
         .toList());
   }
 
-  Future saveTrackInfo(Insertable<TrackInfo> trackInfo) =>
-      into(trackInfos).insertOnConflictUpdate(trackInfo);
+  Future saveTrack(Track track) =>
+      into(trackInfos).insertOnConflictUpdate(track.asTrackInfo);
 
-  Future deleteTrackInfo(Insertable<TrackInfo> trackInfo) =>
-      delete(trackInfos).delete(trackInfo);
+  Future deleteTrack(Track track) =>
+      delete(trackInfos).delete(track.asTrackInfo);
 }

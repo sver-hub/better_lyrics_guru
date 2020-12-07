@@ -26,15 +26,15 @@ class LibraryServiceImplementation extends LibraryService {
 
       if (!artists.contains(artist)) {
         artists.add(artist);
-        _artistDao.saveArtistInfo(artist.asArtistInfo);
+        _artistDao.saveArtist(artist);
       }
 
       if (!albums.contains(album)) {
         albums.add(album);
-        _albumDao.saveAlbumInfo(album.asAlbumInfo);
+        _albumDao.saveAlbum(album);
       }
 
-      _trackDao.saveTrackInfo(track.asTrackInfo);
+      _trackDao.saveTrack(track);
     }
   }
 }

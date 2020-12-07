@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:moor/moor.dart';
 
-import '../../database/moor_database.dart';
 import 'artist.dart';
 
 class Album {
@@ -24,12 +23,4 @@ class Album {
 
   @override
   int get hashCode => id.hashCode;
-
-  AlbumInfosCompanion get asAlbumInfo => AlbumInfosCompanion(
-        id: id != null ? Value(id) : Value.absent(),
-        name: name != null ? Value(name) : Value.absent(),
-        imgUrl: imgUrl != null ? Value(imgUrl) : Value.absent(),
-        releaseDate: releaseDate != null ? Value(releaseDate) : Value.absent(),
-        artistId: artist != null ? Value(artist.id) : Value.absent(),
-      );
 }

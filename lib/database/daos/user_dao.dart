@@ -10,13 +10,24 @@ class UserInfos extends Table {
   Set<Column> get primaryKey => {uid};
 }
 
-extension UserExtension on UserInfo {
+extension UserInfoExtension on UserInfo {
   UserData get asUserData => UserData(
         uid: uid,
         email: email,
         name: name,
         imgUrl: imgUrl,
         refreshToken: refreshToken,
+      );
+}
+
+extension UserExtension on UserData {
+  UserInfosCompanion get asUserInfo => UserInfosCompanion(
+        uid: uid != null ? Value(uid) : Value.absent(),
+        email: email != null ? Value(email) : Value.absent(),
+        name: name != null ? Value(name) : Value.absent(),
+        imgUrl: imgUrl != null ? Value(imgUrl) : Value.absent(),
+        refreshToken:
+            refreshToken != null ? Value(refreshToken) : Value.absent(),
       );
 }
 
@@ -34,12 +45,9 @@ class UserInfoDao extends DatabaseAccessor<LyricsGuruDB>
     return user != null ? user.asUserData : null;
   }
 
-  Future insertUserInfo(Insertable<UserInfo> userInfo) =>
-      into(userInfos).insert(userInfo);
+  Future saveUserData(UserData user) =>
+      into(userInfos).insertOnConflictUpdate(user.asUserInfo);
 
-  Future updateUserInfo(Insertable<UserInfo> userInfo) =>
-      update(userInfos).replace(userInfo);
-
-  Future deleteUserInfo(Insertable<UserInfo> userInfo) =>
-      delete(userInfos).delete(userInfo);
+  Future deleteUserInfo(UserData user) =>
+      delete(userInfos).delete(user.asUserInfo);
 }

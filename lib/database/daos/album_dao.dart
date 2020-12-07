@@ -11,13 +11,23 @@ class AlbumInfos extends Table {
   Set<Column> get primaryKey => {id};
 }
 
-extension AlbumExtension on AlbumInfo {
+extension AlbumInfoExtension on AlbumInfo {
   Album asAlbum({@required Artist artist}) => Album(
       id: id,
       name: name,
       imgUrl: imgUrl,
       releaseDate: releaseDate,
       artist: artist);
+}
+
+extension AlbumExtension on Album {
+  AlbumInfosCompanion get asAlbumInfo => AlbumInfosCompanion(
+        id: id != null ? Value(id) : Value.absent(),
+        name: name != null ? Value(name) : Value.absent(),
+        imgUrl: imgUrl != null ? Value(imgUrl) : Value.absent(),
+        releaseDate: releaseDate != null ? Value(releaseDate) : Value.absent(),
+        artistId: artist != null ? Value(artist.id) : Value.absent(),
+      );
 }
 
 @UseDao(tables: [AlbumInfos])
@@ -58,9 +68,9 @@ class AlbumInfoDao extends DatabaseAccessor<LyricsGuruDB>
         .toList());
   }
 
-  Future saveAlbumInfo(Insertable<AlbumInfo> albumInfo) =>
-      into(albumInfos).insertOnConflictUpdate(albumInfo);
+  Future saveAlbum(Album album) =>
+      into(albumInfos).insertOnConflictUpdate(album.asAlbumInfo);
 
-  Future deleteAlbumInfo(Insertable<AlbumInfo> albumInfo) =>
-      delete(albumInfos).delete(albumInfo);
+  Future deleteAlbum(Album album) =>
+      delete(albumInfos).delete(album.asAlbumInfo);
 }

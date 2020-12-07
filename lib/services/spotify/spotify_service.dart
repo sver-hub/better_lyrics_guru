@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/all.dart';
+
 import '../../logic/models/track.dart';
 import 'spotify_service_implementation.dart';
 

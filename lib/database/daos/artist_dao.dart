@@ -8,8 +8,16 @@ class ArtistInfos extends Table {
   Set<Column> get primaryKey => {id};
 }
 
-extension ArtistExtension on ArtistInfo {
+extension ArtistInfoExtension on ArtistInfo {
   Artist get asArtist => Artist(id: id, name: name, imgUrl: imgUrl);
+}
+
+extension ArtistExtension on Artist {
+  ArtistInfosCompanion get asArtistInfo => ArtistInfosCompanion(
+        id: id != null ? Value(id) : Value.absent(),
+        name: name != null ? Value(name) : Value.absent(),
+        imgUrl: imgUrl != null ? Value(imgUrl) : Value.absent(),
+      );
 }
 
 @UseDao(tables: [ArtistInfos])
@@ -45,9 +53,9 @@ class ArtistInfoDao extends DatabaseAccessor<LyricsGuruDB>
         .toList());
   }
 
-  Future saveArtistInfo(Insertable<ArtistInfo> artistInfo) =>
-      into(artistInfos).insertOnConflictUpdate(artistInfo);
+  Future saveArtist(Artist artist) =>
+      into(artistInfos).insertOnConflictUpdate(artist.asArtistInfo);
 
-  Future deleteArtistInfo(Insertable<ArtistInfo> artistInfo) =>
-      delete(artistInfos).delete(artistInfo);
+  Future deleteArtist(Artist artist) =>
+      delete(artistInfos).delete(artist.asArtistInfo);
 }

@@ -31,7 +31,7 @@ final _userFromDb = FutureProvider.family<UserData, User>((ref, user) async {
       name: user.displayName,
       imgUrl: user.photoURL,
     );
-    userDao.insertUserInfo(userDB.asUserInfo);
+    userDao.saveUserData(userDB);
   }
 
   return userDB;
