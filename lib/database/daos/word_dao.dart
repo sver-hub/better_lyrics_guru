@@ -34,11 +34,10 @@ extension WordExtension on Word {
 }
 
 @UseDao(tables: [WordInfos, WordTrackRefs])
-class WordInfoDao extends DatabaseAccessor<LyricsGuruDB>
-    with _$WordInfoDaoMixin {
+class WordDao extends DatabaseAccessor<LyricsGuruDB> with _$WordDaoMixin {
   final LyricsGuruDB db;
 
-  WordInfoDao(this.db) : super(db);
+  WordDao(this.db) : super(db);
 
   WordTrackRefsCompanion _asWordTrackRef(String word, String trackId) =>
       WordTrackRefsCompanion(word: Value(word), trackId: Value(trackId));

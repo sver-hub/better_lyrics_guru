@@ -32,11 +32,10 @@ extension UserExtension on UserData {
 }
 
 @UseDao(tables: [UserInfos])
-class UserInfoDao extends DatabaseAccessor<LyricsGuruDB>
-    with _$UserInfoDaoMixin {
+class UserDao extends DatabaseAccessor<LyricsGuruDB> with _$UserDaoMixin {
   final LyricsGuruDB db;
 
-  UserInfoDao(this.db) : super(db);
+  UserDao(this.db) : super(db);
 
   Future<UserData> getUser(String uid) async {
     final query = select(userInfos)..where((u) => u.uid.equals(uid));

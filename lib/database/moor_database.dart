@@ -33,11 +33,11 @@ LazyDatabase _openConnection() {
   WordInfos,
   WordTrackRefs,
 ], daos: [
-  ArtistInfoDao,
-  AlbumInfoDao,
-  TrackInfoDao,
-  UserInfoDao,
-  WordInfoDao,
+  ArtistDao,
+  AlbumDao,
+  TrackDao,
+  UserDao,
+  WordDao,
 ])
 class LyricsGuruDB extends _$LyricsGuruDB {
   LyricsGuruDB() : super(_openConnection());

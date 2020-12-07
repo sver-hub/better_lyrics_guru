@@ -45,8 +45,9 @@ Future initDb() async {
   DatabaseConnection connection = await isolate.connect();
   final database = LyricsGuruDB.connect(connection);
 
-  db.registerLazySingleton<ArtistInfoDao>(() => ArtistInfoDao(database));
-  db.registerLazySingleton<AlbumInfoDao>(() => AlbumInfoDao(database));
-  db.registerLazySingleton<TrackInfoDao>(() => TrackInfoDao(database));
-  db.registerLazySingleton<UserInfoDao>(() => UserInfoDao(database));
+  db.registerLazySingleton<ArtistDao>(() => ArtistDao(database));
+  db.registerLazySingleton<AlbumDao>(() => AlbumDao(database));
+  db.registerLazySingleton<TrackDao>(() => TrackDao(database));
+  db.registerLazySingleton<WordDao>(() => WordDao(database));
+  db.registerLazySingleton<UserDao>(() => UserDao(database));
 }

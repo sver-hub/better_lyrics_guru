@@ -40,7 +40,7 @@ class SpotifyAuthScreen extends HookWidget {
     isLoading.value = true;
     final refreshToken = await spotify.authenticate();
     final user = userData.copyWith(refreshToken: refreshToken);
-    final userProvider = db<UserInfoDao>();
+    final userProvider = db<UserDao>();
     userProvider.saveUserData(user);
     appState.state.currentUser = user;
     appState.state.needsDownload = true;

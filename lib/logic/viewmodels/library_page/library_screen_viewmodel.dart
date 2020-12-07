@@ -16,7 +16,7 @@ final libraryScreenViewModel =
 });
 
 class LibraryScreenViewModel extends ChangeNotifier {
-  final _artistDao = db<ArtistInfoDao>();
+  final _artistDao = db<ArtistDao>();
   final LibraryService _libraryService;
   final StateController<AppState> _appState;
 

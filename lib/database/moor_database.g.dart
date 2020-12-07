@@ -1721,21 +1721,16 @@ abstract class _$LyricsGuruDB extends GeneratedDatabase {
   $WordTrackRefsTable _wordTrackRefs;
   $WordTrackRefsTable get wordTrackRefs =>
       _wordTrackRefs ??= $WordTrackRefsTable(this);
-  ArtistInfoDao _artistInfoDao;
-  ArtistInfoDao get artistInfoDao =>
-      _artistInfoDao ??= ArtistInfoDao(this as LyricsGuruDB);
-  AlbumInfoDao _albumInfoDao;
-  AlbumInfoDao get albumInfoDao =>
-      _albumInfoDao ??= AlbumInfoDao(this as LyricsGuruDB);
-  TrackInfoDao _trackInfoDao;
-  TrackInfoDao get trackInfoDao =>
-      _trackInfoDao ??= TrackInfoDao(this as LyricsGuruDB);
-  UserInfoDao _userInfoDao;
-  UserInfoDao get userInfoDao =>
-      _userInfoDao ??= UserInfoDao(this as LyricsGuruDB);
-  WordInfoDao _wordInfoDao;
-  WordInfoDao get wordInfoDao =>
-      _wordInfoDao ??= WordInfoDao(this as LyricsGuruDB);
+  ArtistDao _artistDao;
+  ArtistDao get artistDao => _artistDao ??= ArtistDao(this as LyricsGuruDB);
+  AlbumDao _albumDao;
+  AlbumDao get albumDao => _albumDao ??= AlbumDao(this as LyricsGuruDB);
+  TrackDao _trackDao;
+  TrackDao get trackDao => _trackDao ??= TrackDao(this as LyricsGuruDB);
+  UserDao _userDao;
+  UserDao get userDao => _userDao ??= UserDao(this as LyricsGuruDB);
+  WordDao _wordDao;
+  WordDao get wordDao => _wordDao ??= WordDao(this as LyricsGuruDB);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
@@ -1753,19 +1748,19 @@ abstract class _$LyricsGuruDB extends GeneratedDatabase {
 // DaoGenerator
 // **************************************************************************
 
-mixin _$ArtistInfoDaoMixin on DatabaseAccessor<LyricsGuruDB> {
+mixin _$ArtistDaoMixin on DatabaseAccessor<LyricsGuruDB> {
   $ArtistInfosTable get artistInfos => attachedDatabase.artistInfos;
 }
-mixin _$AlbumInfoDaoMixin on DatabaseAccessor<LyricsGuruDB> {
+mixin _$AlbumDaoMixin on DatabaseAccessor<LyricsGuruDB> {
   $AlbumInfosTable get albumInfos => attachedDatabase.albumInfos;
 }
-mixin _$TrackInfoDaoMixin on DatabaseAccessor<LyricsGuruDB> {
+mixin _$TrackDaoMixin on DatabaseAccessor<LyricsGuruDB> {
   $TrackInfosTable get trackInfos => attachedDatabase.trackInfos;
 }
-mixin _$UserInfoDaoMixin on DatabaseAccessor<LyricsGuruDB> {
+mixin _$UserDaoMixin on DatabaseAccessor<LyricsGuruDB> {
   $UserInfosTable get userInfos => attachedDatabase.userInfos;
 }
-mixin _$WordInfoDaoMixin on DatabaseAccessor<LyricsGuruDB> {
+mixin _$WordDaoMixin on DatabaseAccessor<LyricsGuruDB> {
   $WordInfosTable get wordInfos => attachedDatabase.wordInfos;
   $WordTrackRefsTable get wordTrackRefs => attachedDatabase.wordTrackRefs;
 }

@@ -32,11 +32,10 @@ extension TrackExtension on Track {
 }
 
 @UseDao(tables: [TrackInfos])
-class TrackInfoDao extends DatabaseAccessor<LyricsGuruDB>
-    with _$TrackInfoDaoMixin {
+class TrackDao extends DatabaseAccessor<LyricsGuruDB> with _$TrackDaoMixin {
   final LyricsGuruDB db;
 
-  TrackInfoDao(this.db) : super(db);
+  TrackDao(this.db) : super(db);
 
   Future<List<Track>> getTracksOfAlbum(Album album) async {
     final query = select(trackInfos)

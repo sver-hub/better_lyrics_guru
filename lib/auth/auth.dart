@@ -21,7 +21,7 @@ final _spotifyAuthStream = StreamProvider(
 );
 
 final _userFromDb = FutureProvider.family<UserData, User>((ref, user) async {
-  final userDao = db<UserInfoDao>();
+  final userDao = db<UserDao>();
   var userDB = await userDao.getUser(user.uid);
 
   if (userDB == null) {

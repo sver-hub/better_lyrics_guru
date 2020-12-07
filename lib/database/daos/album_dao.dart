@@ -31,11 +31,10 @@ extension AlbumExtension on Album {
 }
 
 @UseDao(tables: [AlbumInfos])
-class AlbumInfoDao extends DatabaseAccessor<LyricsGuruDB>
-    with _$AlbumInfoDaoMixin {
+class AlbumDao extends DatabaseAccessor<LyricsGuruDB> with _$AlbumDaoMixin {
   final LyricsGuruDB db;
 
-  AlbumInfoDao(this.db) : super(db);
+  AlbumDao(this.db) : super(db);
 
   Future<List<Album>> getAlbumsOfArtist(Artist artist) async {
     final query = select(albumInfos)

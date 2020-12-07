@@ -21,11 +21,10 @@ extension ArtistExtension on Artist {
 }
 
 @UseDao(tables: [ArtistInfos])
-class ArtistInfoDao extends DatabaseAccessor<LyricsGuruDB>
-    with _$ArtistInfoDaoMixin {
+class ArtistDao extends DatabaseAccessor<LyricsGuruDB> with _$ArtistDaoMixin {
   final LyricsGuruDB db;
 
-  ArtistInfoDao(this.db) : super(db);
+  ArtistDao(this.db) : super(db);
 
   Future<List<Artist>> getAllArtists() async {
     final query = (select(artistInfos)

@@ -15,7 +15,7 @@ class ArtistScreenViewModel extends ChangeNotifier {
     loadData();
   }
 
-  final _albumDao = db<AlbumInfoDao>();
+  final _albumDao = db<AlbumDao>();
 
   List<Album> _albums = [];
   List<Album> get albums => _albums;

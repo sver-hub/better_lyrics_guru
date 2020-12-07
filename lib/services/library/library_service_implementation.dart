@@ -9,9 +9,9 @@ class LibraryServiceImplementation extends LibraryService {
   LibraryServiceImplementation(this.spotifyService);
 
   final SpotifyService spotifyService;
-  final _artistDao = db<ArtistInfoDao>();
-  final _albumDao = db<AlbumInfoDao>();
-  final _trackDao = db<TrackInfoDao>();
+  final _artistDao = db<ArtistDao>();
+  final _albumDao = db<AlbumDao>();
+  final _trackDao = db<TrackDao>();
 
   @override
   Future<void> loadFavouriteTracks() async {

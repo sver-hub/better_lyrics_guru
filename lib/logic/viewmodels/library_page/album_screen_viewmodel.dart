@@ -16,7 +16,7 @@ class AlbumScreenViewModel extends ChangeNotifier {
   Album _album;
   Album get album => _album;
 
-  final _trackDao = db<TrackInfoDao>();
+  final _trackDao = db<TrackDao>();
 
   AlbumScreenViewModel(Album album) {
     _album = album;
