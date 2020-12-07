@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:moor/moor.dart';
 
 class Artist {
   final String id;

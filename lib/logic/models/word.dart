@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moor/moor.dart';
 
 class Word {
   final String word;
@@ -13,4 +12,10 @@ class Word {
     @required this.progress,
     @required this.refTrackIds,
   });
+
+  @override
+  bool operator ==(other) => other is Word && other.word == word;
+
+  @override
+  int get hashCode => word.hashCode;
 }

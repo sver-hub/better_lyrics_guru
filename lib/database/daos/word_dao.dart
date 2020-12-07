@@ -39,24 +39,56 @@ class WordDao extends DatabaseAccessor<LyricsGuruDB> with _$WordDaoMixin {
 
   WordDao(this.db) : super(db);
 
+  Future<Word> getWord(String word) async {
+    final wordQuery = select(wordInfos)..where((w) => w.word.equals(word));
+    final res = await wordQuery.getSingle();
+    if (res == null) return null;
+
+    final refQuery = select(wordTrackRefs)
+      ..where((wtr) => wtr.word.equals(word));
+    final trackIds = (await refQuery.get()).map((ref) => ref.trackId).toList();
+    return res.asWord(trackIds);
+  }
+
+  Future<List<Word>> getWordsOfTrack(Track track) async {
+    final wordsQuery = select(wordTrackRefs)
+      ..where((wtr) => wtr.trackId.equals(track.id));
+    final words = (await wordsQuery.get()).map((ref) => ref.word);
+    return [for (final word in words) await getWord(word)];
+  }
+
+  Future addTrackRefs(Word word, List<Track> tracks) async {
+    final wordDb = await getWord(word.word);
+    if (wordDb == null) throw Exception('No such word in db');
+
+    final trackIds = tracks.map((track) => track.id);
+    return transaction(() async {
+      for (final trackId in trackIds) {
+        await into(wordTrackRefs).insertOnConflictUpdate(
+          _asWordTrackRef(word.word, trackId),
+        );
+      }
+    });
+  }
+
+  Future saveWord(Word word) => transaction(() async {
+        await into(wordInfos).insertOnConflictUpdate(word.asWordInfo);
+        for (String trackId in word.refTrackIds) {
+          await into(wordTrackRefs).insertOnConflictUpdate(
+            _asWordTrackRef(word.word, trackId),
+          );
+        }
+      });
+
+  Future deleteWord(Word word) => transaction(() async {
+        await delete(wordInfos).delete(word.asWordInfo);
+        for (String trackId in word.refTrackIds) {
+          await delete(wordTrackRefs).delete(
+            _asWordTrackRef(word.word, trackId),
+          );
+        }
+      });
+
   WordTrackRefsCompanion _asWordTrackRef(String word, String trackId) =>
       WordTrackRefsCompanion(word: Value(word), trackId: Value(trackId));
-
-  Future saveWordInfo(Word word) => transaction(() async {
-        await into(wordInfos).insertOnConflictUpdate(word.asWordInfo);
-        for (String ref in word.refTrackIds) {
-          await into(wordTrackRefs).insertOnConflictUpdate(
-            _asWordTrackRef(word.word, ref),
-          );
-        }
-      });
-
-  Future deleteWordInfo(Word word) => transaction(() async {
-        await delete(wordInfos).delete(word.asWordInfo);
-        for (String ref in word.refTrackIds) {
-          await delete(wordTrackRefs).delete(
-            _asWordTrackRef(word.word, ref),
-          );
-        }
-      });
 }
