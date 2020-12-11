@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../logic/models/album.dart';
 import '../../../logic/models/artist.dart';
 import '../../../logic/models/track.dart';
-import '../../views/library/album_screen.dart';
-import '../../views/library/artist_screen.dart';
-import '../../views/library/library_screen.dart';
-import '../../views/library/track_screen.dart';
+import '../../views/library_page/album_screen.dart';
+import '../../views/library_page/artist_screen.dart';
+import '../../views/library_page/library_screen.dart';
+import '../../views/library_page/track_screen.dart';
 import 'page_route_transition.dart';
 
 class LibraryRouteGenerator {

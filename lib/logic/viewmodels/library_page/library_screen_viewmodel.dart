@@ -11,19 +11,19 @@ import '../../app_state.dart';
 final libraryScreenViewModel =
     ChangeNotifierProvider<LibraryScreenViewModel>((ref) {
   final libServ = ref.read(libraryService);
-  final appSt = ref.watch(appState);
-  return LibraryScreenViewModel(libServ, appSt);
+  final libState = ref.watch(libraryState);
+  return LibraryScreenViewModel(libServ, libState);
 });
 
 class LibraryScreenViewModel extends ChangeNotifier {
   final _artistDao = db<ArtistDao>();
   final LibraryService _libraryService;
-  final StateController<AppState> _appState;
+  final LibraryState _libraryState;
 
   List<Artist> _artists = [];
   List<Artist> get artists => _artists;
 
-  LibraryScreenViewModel(this._libraryService, this._appState) {
+  LibraryScreenViewModel(this._libraryService, this._libraryState) {
     loadData();
   }
 
@@ -32,15 +32,15 @@ class LibraryScreenViewModel extends ChangeNotifier {
       _artists = updatedList;
       notifyListeners();
     });
-    if (_appState.state.needsDownload) {
+    if (_libraryState.needsDownload) {
       dowloadLibrary();
     }
   }
 
   void dowloadLibrary() async {
-    _appState.state.isLibraryReady = false;
+    _libraryState.isReady = false;
     await _libraryService.loadFavouriteTracks();
-    _appState.state.isLibraryReady = true;
-    _appState.state.needsDownload = false;
+    _libraryState.isReady = true;
+    _libraryState.needsDownload = false;
   }
 }

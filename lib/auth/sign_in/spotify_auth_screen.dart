@@ -33,17 +33,16 @@ class SpotifyAuthScreen extends HookWidget {
   }
 
   Future<void> _signInSpotify(
-    SpotifyService spotify,
+    BuildContext context,
     ValueNotifier<bool> isLoading,
-    StateController<AppState> appState,
   ) async {
     isLoading.value = true;
-    final refreshToken = await spotify.authenticate();
+    final refreshToken = await context.read(spotifyService).authenticate();
     final user = userData.copyWith(refreshToken: refreshToken);
     final userProvider = db<UserDao>();
     userProvider.saveUserData(user);
-    appState.state.currentUser = user;
-    appState.state.needsDownload = true;
+    context.read(currentUser).user = user;
+    context.read(libraryState).needsDownload = true;
     isLoading.value = false;
   }
 
@@ -52,11 +51,10 @@ class SpotifyAuthScreen extends HookWidget {
     final _isLoading = useState(false);
     final _spotify = useProvider(spotifyService);
     final _auth = useProvider(authService);
-    final _appState = useProvider(appState);
 
     if (userData.refreshToken != null) {
       _spotify.authenticateWithToken(userData.refreshToken);
-      _appState.state.currentUser = userData;
+      context.read(currentUser).user = userData;
       return LoadingScreen();
     }
 
@@ -75,9 +73,8 @@ class SpotifyAuthScreen extends HookWidget {
               key: SpotifyAuthScreen.spotifyButtonKey,
               assetName: 'assets/sp-logo.png',
               text: 'Sign In on Spotify',
-              onTap: () => _isLoading.value
-                  ? null
-                  : _signInSpotify(_spotify, _isLoading, _appState),
+              onTap: () =>
+                  _isLoading.value ? null : _signInSpotify(context, _isLoading),
               color: Colors.white,
             ),
           ],
