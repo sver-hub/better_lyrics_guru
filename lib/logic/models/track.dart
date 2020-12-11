@@ -22,4 +22,12 @@ class Track {
 
   @override
   int get hashCode => id.hashCode;
+
+  Track withLyrics(String lyrics) => Track(
+        id: id,
+        name: name,
+        trackNumber: trackNumber,
+        lyrics: lyrics,
+        album: album,
+      );
 }
