@@ -1,14 +1,16 @@
-import '../../database/moor_database.dart';
 import '../../database/db.dart';
+import '../../database/moor_database.dart';
 import '../../logic/models/album.dart';
 import '../../logic/models/artist.dart';
+import '../lyrics/lyrics_service.dart';
 import '../spotify/spotify_service.dart';
 import 'library_service.dart';
 
 class LibraryServiceImplementation extends LibraryService {
-  LibraryServiceImplementation(this.spotifyService);
+  LibraryServiceImplementation(this._spotify, this._lyrics);
 
-  final SpotifyService spotifyService;
+  final SpotifyService _spotify;
+  final LyricsService _lyrics;
   final _artistDao = db<ArtistDao>();
   final _albumDao = db<AlbumDao>();
   final _trackDao = db<TrackDao>();
@@ -18,7 +20,7 @@ class LibraryServiceImplementation extends LibraryService {
     final artists = List<Artist>();
     final albums = List<Album>();
 
-    final savedTrackStream = spotifyService.getStreamOfSavedTracks();
+    final savedTrackStream = _spotify.getStreamOfSavedTracks();
 
     await for (final track in savedTrackStream) {
       final album = track.album;
