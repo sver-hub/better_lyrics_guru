@@ -24,7 +24,7 @@ class LibraryScreen extends HookWidget {
         physics: BouncingScrollPhysics(),
         slivers: [
           _buildTitle(),
-          _buildButton(),
+          _buildButtons(),
           _buildList(),
         ],
       ),
@@ -45,13 +45,34 @@ class LibraryScreen extends HookWidget {
     );
   }
 
-  Widget _buildButton() {
+  Widget _buildButtons() {
+    final remaining = useState(0);
+    final total = useState(0);
     return Builder(
       builder: (context) => SliverToBoxAdapter(
-        child: IconButton(
-          icon: Icon(Icons.refresh),
-          onPressed: () =>
-              context.read(libraryScreenViewModel).dowloadLibrary(),
+        child: Column(
+          children: [
+            IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () =>
+                  context.read(libraryScreenViewModel).dowloadLibrary(),
+            ),
+            SizedBox(height: 20),
+            IconButton(
+              icon: Icon(Icons.download_sharp),
+              onPressed: () => context
+                  .read(libraryScreenViewModel)
+                  .downloadLyrics()
+                  .listen((rem) {
+                if (rem > total.value) total.value = rem;
+                remaining.value = rem;
+                if (rem == 0) total.value = 0;
+              }),
+            ),
+            if (remaining.value > 0)
+              Text(
+                  'Downloading lyrics: ${total.value - remaining.value}/${total.value}...')
+          ],
         ),
       ),
     );

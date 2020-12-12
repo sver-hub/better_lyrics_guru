@@ -11,5 +11,7 @@ final libraryService = Provider<LibraryService>((ref) {
 });
 
 abstract class LibraryService {
-  Future<void> loadFavouriteTracks();
+  Future loadFavouriteTracks();
+
+  Stream<int> loadLyrics();
 }

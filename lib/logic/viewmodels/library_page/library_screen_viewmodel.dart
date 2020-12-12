@@ -42,4 +42,8 @@ class LibraryScreenViewModel extends ChangeNotifier {
     await _libraryService.loadFavouriteTracks();
     _libraryState.setReady();
   }
+
+  Stream<int> downloadLyrics() {
+    return _libraryService.loadLyrics();
+  }
 }

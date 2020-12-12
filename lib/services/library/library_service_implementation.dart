@@ -39,4 +39,22 @@ class LibraryServiceImplementation extends LibraryService {
       _trackDao.saveTrack(track);
     }
   }
+
+  @override
+  Stream<int> loadLyrics() async* {
+    final artists = await _artistDao.getAllArtists();
+    final albums = [
+      for (final artist in artists)
+        ...(await _albumDao.getAlbumsOfArtist(artist))
+    ];
+    final tracks = [
+      for (final album in albums) ...(await _trackDao.getTracksOfAlbum(album))
+    ];
+    int remaining = tracks.length;
+    yield remaining;
+    for (final track in tracks) {
+      await _lyrics.fetchLyricsOfTrack(track);
+      yield --remaining;
+    }
+  }
 }
