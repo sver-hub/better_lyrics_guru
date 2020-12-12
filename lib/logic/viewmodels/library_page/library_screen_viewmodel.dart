@@ -6,7 +6,7 @@ import 'package:lyrics_guru/logic/models/artist.dart';
 import 'package:lyrics_guru/services/library/library_service.dart';
 import 'package:lyrics_guru/database/db.dart';
 
-import '../../app_state.dart';
+import '../../app_state/app_state.dart';
 
 final libraryScreenViewModel =
     ChangeNotifierProvider<LibraryScreenViewModel>((ref) {
@@ -38,9 +38,8 @@ class LibraryScreenViewModel extends ChangeNotifier {
   }
 
   void dowloadLibrary() async {
-    _libraryState.isReady = false;
+    _libraryState.setLoading();
     await _libraryService.loadFavouriteTracks();
-    _libraryState.isReady = true;
-    _libraryState.needsDownload = false;
+    _libraryState.setReady();
   }
 }

@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
-import 'package:lyrics_guru/logic/app_state.dart';
+import 'package:lyrics_guru/logic/app_state/app_state.dart';
 
 class ProfileScreen extends HookWidget {
   const ProfileScreen({Key key}) : super(key: key);

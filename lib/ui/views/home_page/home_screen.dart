@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
-import 'package:lyrics_guru/logic/app_state.dart';
+import 'package:lyrics_guru/logic/app_state/app_state.dart';
 import 'package:lyrics_guru/ui/navigation/route_generators/home_route_generator.dart';
 
 import '../../../auth/services/auth_service.dart';

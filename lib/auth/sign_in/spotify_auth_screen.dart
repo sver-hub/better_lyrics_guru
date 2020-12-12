@@ -8,7 +8,7 @@ import '../../database/db.dart';
 import '../../services/spotify/spotify_service.dart';
 import '../../ui/widgets/platform_exception_alert_dialog.dart';
 import '../../logic/models/user_data.dart';
-import '../../logic/app_state.dart';
+import '../../logic/app_state/app_state.dart';
 import '../services/auth_service.dart';
 import '../constants/strings.dart';
 import '../widgets/logo.dart';
@@ -42,7 +42,7 @@ class SpotifyAuthScreen extends HookWidget {
     final userProvider = db<UserDao>();
     userProvider.saveUserData(user);
     context.read(currentUser).user = user;
-    context.read(libraryState).needsDownload = true;
+    context.read(libraryState).setNeedsDownload();
     isLoading.value = false;
   }
 
