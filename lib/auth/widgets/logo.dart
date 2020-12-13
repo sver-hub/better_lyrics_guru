@@ -5,15 +5,16 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 80),
       child: Material(
           elevation: 8.0,
           shape: CircleBorder(),
           child: CircleAvatar(
             backgroundColor: Colors.white,
-            child: FlutterLogo(
-              size: 50.0,
+            child: Container(
+              child: Image.asset('assets/icon/logo.png'),
+              padding: const EdgeInsets.all(15),
             ),
             radius: 50.0,
           )),

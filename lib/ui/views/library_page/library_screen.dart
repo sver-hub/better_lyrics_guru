@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lyrics_guru/logic/app_state/app_state.dart';
 
 import '../../../logic/models/artist.dart';
 import '../../../logic/viewmodels/library_page/library_screen_viewmodel.dart';
@@ -46,32 +47,24 @@ class LibraryScreen extends HookWidget {
   }
 
   Widget _buildButtons() {
-    final remaining = useState(0);
-    final total = useState(0);
+    final state = useProvider(libraryState);
     return Builder(
       builder: (context) => SliverToBoxAdapter(
-        child: Column(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: () =>
-                  context.read(libraryScreenViewModel).dowloadLibrary(),
+              onPressed: () => state.isLoading
+                  ? null
+                  : context.read(libraryScreenViewModel).dowloadLibrary(),
             ),
-            SizedBox(height: 20),
+            SizedBox(width: 40),
             IconButton(
-              icon: Icon(Icons.download_sharp),
-              onPressed: () => context
-                  .read(libraryScreenViewModel)
-                  .downloadLyrics()
-                  .listen((rem) {
-                if (rem > total.value) total.value = rem;
-                remaining.value = rem;
-                if (rem == 0) total.value = 0;
-              }),
-            ),
-            if (remaining.value > 0)
-              Text(
-                  'Downloading lyrics: ${total.value - remaining.value}/${total.value}...')
+                icon: Icon(Icons.download_sharp),
+                onPressed: () => state.isLoading
+                    ? null
+                    : context.read(libraryScreenViewModel).downloadLyrics()),
           ],
         ),
       ),
