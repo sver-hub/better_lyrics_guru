@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:get_it/get_it.dart';
-import 'package:lyrics_guru/database/moor_database.dart';
+import 'moor_database.dart';
 import 'package:moor/ffi.dart';
 import 'package:moor/isolate.dart';
 import 'package:moor/moor.dart';

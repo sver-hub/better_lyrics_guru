@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lyrics_guru/ui/views/home_page/profile_screen.dart';
 
 import '../../views/home_page/home_screen.dart';
+import '../../views/home_page/profile_screen.dart';
 import 'page_route_transition.dart';
 
 class HomeRouteGenerator {

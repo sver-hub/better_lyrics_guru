@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/all.dart';
-import 'package:lyrics_guru/auth/services/firebase_auth_service.dart';
-import 'package:lyrics_guru/services/spotify/spotify_service.dart';
+
+import '../../services/spotify/spotify_service.dart';
+import 'firebase_auth_service.dart';
 
 final authService = Provider<AuthService>(
   (ref) => FirebaseAuthService(ref.read(spotifyService)),

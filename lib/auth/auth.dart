@@ -2,15 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
-import 'package:lyrics_guru/auth/services/auth_service.dart';
-import 'package:lyrics_guru/auth/sign_in/sign_in_screen.dart';
-import 'package:lyrics_guru/auth/sign_in/spotify_auth_screen.dart';
-import 'package:lyrics_guru/auth/widgets/loading_screen.dart';
-import 'package:lyrics_guru/database/moor_database.dart';
-import 'package:lyrics_guru/logic/models/user_data.dart';
-import 'package:lyrics_guru/database/db.dart';
-import 'package:lyrics_guru/services/spotify/spotify_service.dart';
-import 'package:lyrics_guru/ui/widgets/screen_fade_transition.dart';
+
+import '../database/db.dart';
+import '../database/moor_database.dart';
+import '../logic/models/user_data.dart';
+import '../services/spotify/spotify_service.dart';
+import '../ui/widgets/screen_fade_transition.dart';
+import 'services/auth_service.dart';
+import 'sign_in/sign_in_screen.dart';
+import 'sign_in/spotify_auth_screen.dart';
+import 'widgets/loading_screen.dart';
 
 final _firebaseUserStream = StreamProvider(
   (ref) => ref.watch(authService).authStateChanges,

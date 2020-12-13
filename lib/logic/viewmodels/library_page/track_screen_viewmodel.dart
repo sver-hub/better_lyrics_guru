@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lyrics_guru/logic/models/track.dart';
+
+import '../../models/track.dart';
 
 class TrackScreenViewModel extends ChangeNotifier {
   Track _track;

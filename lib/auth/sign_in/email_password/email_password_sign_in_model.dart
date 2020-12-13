@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/all.dart';
-import 'package:lyrics_guru/auth/services/auth_service.dart';
-import 'package:lyrics_guru/auth/constants/strings.dart';
-import 'package:lyrics_guru/auth/sign_in/email_password/validator.dart';
+
+import '../../constants/strings.dart';
+import '../../services/auth_service.dart';
+import 'validator.dart';
 
 enum EmailPasswordSignInFormType { signIn, register, forgotPassword }
 

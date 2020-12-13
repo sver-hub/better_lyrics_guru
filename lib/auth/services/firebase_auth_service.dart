@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:lyrics_guru/auth/services/auth_service.dart';
-import 'package:lyrics_guru/services/spotify/spotify_service.dart';
+
+import '../../services/spotify/spotify_service.dart';
+import 'auth_service.dart';
 
 class FirebaseAuthService extends AuthService {
   final _firebaseAuth = FirebaseAuth.instance;

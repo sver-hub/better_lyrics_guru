@@ -3,16 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
 
-import '../../database/moor_database.dart';
 import '../../database/db.dart';
+import '../../database/moor_database.dart';
+import '../../logic/app_state/app_state.dart';
+import '../../logic/models/user_data.dart';
 import '../../services/spotify/spotify_service.dart';
 import '../../ui/widgets/platform_exception_alert_dialog.dart';
-import '../../logic/models/user_data.dart';
-import '../../logic/app_state/app_state.dart';
-import '../services/auth_service.dart';
 import '../constants/strings.dart';
-import '../widgets/logo.dart';
+import '../services/auth_service.dart';
 import '../widgets/loading_screen.dart';
+import '../widgets/logo.dart';
 import '../widgets/social_sign_in_button.dart';
 
 class SpotifyAuthScreen extends HookWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:lyrics_guru/ui/widgets/platform_alert_dialog.dart';
+
+import 'platform_alert_dialog.dart';
 
 class PlatformExceptionAlertDialog extends PlatformAlertDialog {
   PlatformExceptionAlertDialog({String title, PlatformException exception})

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lyrics_guru/auth/constants/strings.dart';
-import 'package:lyrics_guru/auth/sign_in/email_password/email_password_sign_in_model.dart';
-import 'package:lyrics_guru/auth/widgets/form_submit_button.dart';
-import 'package:lyrics_guru/ui/widgets/platform_alert_dialog.dart';
-import 'package:lyrics_guru/ui/widgets/platform_exception_alert_dialog.dart';
+
+import '../../../ui/widgets/platform_alert_dialog.dart';
+import '../../../ui/widgets/platform_exception_alert_dialog.dart';
+import '../../constants/strings.dart';
+import '../../widgets/form_submit_button.dart';
+import 'email_password_sign_in_model.dart';
 
 class EmailPasswordSignInPage extends StatefulWidget {
   const EmailPasswordSignInPage._(

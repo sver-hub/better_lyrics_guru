@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lyrics_guru/ui/widgets/custom_flat_button.dart';
+
+import '../../ui/widgets/custom_flat_button.dart';
 
 class SocialSignInButton extends CustomFlatButton {
   SocialSignInButton({

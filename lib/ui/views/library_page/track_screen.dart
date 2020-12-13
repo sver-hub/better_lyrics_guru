@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../logic/models/track.dart';
 
 class TrackScreen extends StatelessWidget {

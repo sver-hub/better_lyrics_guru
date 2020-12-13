@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lyrics_guru/database/moor_database.dart';
-import 'package:lyrics_guru/logic/models/album.dart';
-import 'package:lyrics_guru/logic/models/artist.dart';
-import 'package:lyrics_guru/database/db.dart';
+
+import '../../../database/db.dart';
+import '../../../database/moor_database.dart';
+import '../../models/album.dart';
+import '../../models/artist.dart';
 
 final artistScreenViewModel =
     ChangeNotifierProvider.family<ArtistScreenViewModel, Artist>(

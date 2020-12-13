@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lyrics_guru/auth/constants/keys.dart';
-import 'package:lyrics_guru/ui/widgets/platform_widget.dart';
+import 'package:flutter/material.dart';
+
+import '../../auth/constants/keys.dart';
+import 'platform_widget.dart';
 
 class PlatformAlertDialog extends PlatformWidget {
   PlatformAlertDialog({

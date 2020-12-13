@@ -1,21 +1,22 @@
 import 'dart:io';
 
-import 'package:lyrics_guru/logic/models/album.dart';
-import 'package:lyrics_guru/logic/models/artist.dart';
-import 'package:lyrics_guru/logic/models/track.dart';
-import 'package:lyrics_guru/logic/models/user_data.dart';
-import 'package:lyrics_guru/logic/models/word.dart';
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
-part 'moor_database.g.dart';
-part 'daos/artist_dao.dart';
+import '../logic/models/album.dart';
+import '../logic/models/artist.dart';
+import '../logic/models/track.dart';
+import '../logic/models/user_data.dart';
+import '../logic/models/word.dart';
+
 part 'daos/album_dao.dart';
+part 'daos/artist_dao.dart';
 part 'daos/track_dao.dart';
 part 'daos/user_dao.dart';
 part 'daos/word_dao.dart';
+part 'moor_database.g.dart';
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {

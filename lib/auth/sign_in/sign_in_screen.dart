@@ -6,11 +6,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../ui/widgets/platform_exception_alert_dialog.dart';
 import '../constants/strings.dart';
-import '../widgets/logo.dart';
-import '../widgets/delayed_animation.dart';
-import '../widgets/social_sign_in_button.dart';
 //import 'package:lyrics_guru/auth/sign_in/email_password_sign_in_page.dart';
 import '../sign_in/sign_in_manager.dart';
+import '../widgets/delayed_animation.dart';
+import '../widgets/logo.dart';
+import '../widgets/social_sign_in_button.dart';
 
 class SignInScreenBuilder extends HookWidget {
   @override
