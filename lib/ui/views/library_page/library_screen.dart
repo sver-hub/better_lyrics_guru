@@ -12,15 +12,8 @@ class LibraryScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: FractionalOffset.topLeft,
-          end: FractionalOffset.bottomRight,
-          stops: [0, 0.6],
-          colors: [Color(0xFF33658A), Colors.black],
-        ),
-      ),
-      padding: const EdgeInsets.fromLTRB(10, 30, 10, 0),
+      color: Colors.white,
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [

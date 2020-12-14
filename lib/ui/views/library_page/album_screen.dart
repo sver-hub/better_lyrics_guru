@@ -16,7 +16,7 @@ class AlbumScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Colors.white,
       child: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
@@ -37,12 +37,9 @@ class AlbumScreen extends HookWidget {
       children: [
         Container(
           height: MediaQuery.of(context).size.width,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: Image(
-              image: CachedNetworkImageProvider(album.imgUrl),
-              fit: BoxFit.cover,
-            ),
+          child: Image(
+            image: CachedNetworkImageProvider(album.imgUrl),
+            fit: BoxFit.cover,
           ),
         ),
         Container(
@@ -69,6 +66,7 @@ class AlbumScreen extends HookWidget {
                   icon: Icon(
                     Icons.arrow_back_ios,
                   ),
+                  color: Colors.white,
                   iconSize: 30.0,
                   onPressed: () => Navigator.of(context).pop(),
                 ),
@@ -80,10 +78,10 @@ class AlbumScreen extends HookWidget {
                   album.name,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline2
+                      .copyWith(color: Colors.white),
                 ),
               ),
             ],
@@ -94,16 +92,6 @@ class AlbumScreen extends HookWidget {
   }
 
   Widget buildList() {
-    // return ChangeNotifierProvider<AlbumScreenViewModel>(
-    //   create: (context) => AlbumScreenViewModel(album),
-    //   lazy: true,
-    //   child: Consumer<AlbumScreenViewModel>(
-    //     builder: (context, model, child) => SliverList(
-    //       delegate: SliverChildListDelegate(
-    //           model.tracks.map((t) => _TrackTile(track: t)).toList()),
-    //     ),
-    //   ),
-    // );
     final model = useProvider(albumScreenViewModel(album));
     return SliverList(
       delegate: SliverChildListDelegate(
@@ -125,16 +113,12 @@ class _TrackTile extends StatelessWidget {
           .pushNamed(LibraryRouteGenerator.TRACK, arguments: track),
       title: Text(
         track.name,
-        style: TextStyle(
-          fontSize: 24,
-        ),
+        style: Theme.of(context).textTheme.headline3,
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
         track.album.artist.name + ' - ' + track.album.name,
-        style: TextStyle(
-          color: Colors.white54,
-        ),
+        style: Theme.of(context).textTheme.subtitle1,
       ),
     );
   }

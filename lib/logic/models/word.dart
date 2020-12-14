@@ -9,8 +9,8 @@ class Word {
   Word({
     @required this.word,
     @required this.definition,
-    @required this.progress,
-    @required this.refTrackIds,
+    this.progress = 0,
+    this.refTrackIds = const [],
   });
 
   @override

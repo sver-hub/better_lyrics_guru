@@ -2,12 +2,13 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:get_it/get_it.dart';
-import 'moor_database.dart';
 import 'package:moor/ffi.dart';
 import 'package:moor/isolate.dart';
 import 'package:moor/moor.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
+
+import 'moor_database.dart';
 
 Future<MoorIsolate> _createMoorIsolate() async {
   final dir = await getApplicationDocumentsDirectory();

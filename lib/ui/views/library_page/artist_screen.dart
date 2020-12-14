@@ -16,7 +16,7 @@ class ArtistScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Colors.white,
       child: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
@@ -38,12 +38,9 @@ class ArtistScreen extends HookWidget {
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.width - 50,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: Image(
-              image: CachedNetworkImageProvider(artist.imgUrl),
-              fit: BoxFit.cover,
-            ),
+          child: Image(
+            image: CachedNetworkImageProvider(artist.imgUrl),
+            fit: BoxFit.cover,
           ),
         ),
         Container(
@@ -69,16 +66,17 @@ class ArtistScreen extends HookWidget {
                 icon: Icon(
                   Icons.arrow_back_ios,
                 ),
+                color: Colors.white,
                 iconSize: 30.0,
                 onPressed: () => Navigator.of(context).pop(),
               ),
               SizedBox(width: 20.0),
               Text(
                 artist.name,
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2
+                    .copyWith(color: Colors.white),
               ),
             ],
           ),

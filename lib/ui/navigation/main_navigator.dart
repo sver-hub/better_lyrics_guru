@@ -83,38 +83,33 @@ class _MainNavigatorState extends State<MainNavigator>
   }
 
   Widget _buildBottomNavigationBar() {
-    return Theme(
-      data: Theme.of(context).copyWith(
-          canvasColor:
-              Theme.of(context).bottomNavigationBarTheme.backgroundColor),
-      child: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        showUnselectedLabels: true,
-        onTap: (int idx) => setState(() {
-          if (idx == _selectedIndex) {
-            _navKeys[_selectedIndex]
-                .currentState
-                .pushNamedAndRemoveUntil('/', (_) => false);
-            return;
-          }
-          _selectedIndex = idx;
-        }),
-        items: [
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.library_music),
-            label: 'My Songs',
-          ),
-          // new BottomNavigationBarItem(
-          //   icon: Icon(Icons.library_books),
-          //   label: 'My Words',
-          // ),
-        ],
-      ),
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      currentIndex: _selectedIndex,
+      showUnselectedLabels: true,
+      onTap: (int idx) => setState(() {
+        if (idx == _selectedIndex) {
+          _navKeys[_selectedIndex]
+              .currentState
+              .pushNamedAndRemoveUntil('/', (_) => false);
+          return;
+        }
+        _selectedIndex = idx;
+      }),
+      items: [
+        new BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        new BottomNavigationBarItem(
+          icon: Icon(Icons.library_music),
+          label: 'My Songs',
+        ),
+        // new BottomNavigationBarItem(
+        //   icon: Icon(Icons.library_books),
+        //   label: 'My Words',
+        // ),
+      ],
     );
   }
 }

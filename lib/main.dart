@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/all.dart';
 import 'auth/auth.dart';
 import 'database/db.dart';
 import 'ui/navigation/main_navigator.dart';
+import 'ui/theme/theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Lyrics Guru',
-      theme: ThemeData(),
+      theme: appTheme,
       home: Auth(
         child: MainNavigator(),
       ),

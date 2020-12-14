@@ -13,7 +13,7 @@ class Logo extends StatelessWidget {
           child: CircleAvatar(
             backgroundColor: Colors.white,
             child: Container(
-              child: Image.asset('assets/icon/logo.png'),
+              child: Image.asset('assets/logo/logo.png'),
               padding: const EdgeInsets.all(15),
             ),
             radius: 50.0,
