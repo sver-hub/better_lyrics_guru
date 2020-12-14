@@ -21,8 +21,9 @@ class WordCarousel extends StatelessWidget {
       items: [
         for (final item in _items)
           Container(
-            padding: EdgeInsets.all(22.0),
-            margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 16.0),
+            padding: const EdgeInsets.all(22.0),
+            margin:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 16.0),
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),

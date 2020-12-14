@@ -80,4 +80,7 @@ final textTheme = TextTheme(
 final bottomNavigationBarTheme = BottomNavigationBarThemeData(
   selectedItemColor: Palette.blue,
   unselectedItemColor: Color(0xFFAAAAAA),
+  showSelectedLabels: false,
+  showUnselectedLabels: false,
+  type: BottomNavigationBarType.fixed,
 );

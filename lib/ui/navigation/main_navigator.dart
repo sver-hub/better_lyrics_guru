@@ -84,9 +84,7 @@ class _MainNavigatorState extends State<MainNavigator>
 
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
       currentIndex: _selectedIndex,
-      showUnselectedLabels: true,
       onTap: (int idx) => setState(() {
         if (idx == _selectedIndex) {
           _navKeys[_selectedIndex]
