@@ -101,6 +101,13 @@ class HomePage extends HookWidget {
           artistImageUrl:
               'https://i.scdn.co/image/5b722d9ae6f94ef7742f19531d2668866d418043',
         ),
+        WordCarouselItem(
+          word: Word(
+              word: 'Affliction',
+              definition: 'A state of pain, suffering, distress or agony.'),
+          artistImageUrl:
+              'https://i.scdn.co/image/5b722d9ae6f94ef7742f19531d2668866d418043',
+        ),
       ],
     );
   }

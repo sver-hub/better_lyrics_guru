@@ -68,7 +68,7 @@ class SpotifyAuthScreen extends HookWidget {
             _buildTitle(),
             const SizedBox(height: 80.0),
             ..._buildText(),
-            const SizedBox(height: 150.0),
+            const SizedBox(height: 210.0),
             SocialSignInButton(
               key: SpotifyAuthScreen.spotifyButtonKey,
               assetName: 'assets/sp-logo.png',

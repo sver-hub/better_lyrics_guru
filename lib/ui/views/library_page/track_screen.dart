@@ -127,6 +127,7 @@ class TrackScreen extends HookWidget {
       ),
       color: Colors.indigo,
       loading: model.analyzing,
+      spinnerColor: Colors.white,
       onTap: () => model.analyzeTrack(),
     );
   }

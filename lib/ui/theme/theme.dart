@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'palette.dart';
 
 final appTheme = ThemeData(
+  accentColor: Colors.indigo,
   textTheme: textTheme,
   bottomNavigationBarTheme: bottomNavigationBarTheme,
 );

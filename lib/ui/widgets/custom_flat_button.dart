@@ -10,11 +10,12 @@ class CustomFlatButton extends StatelessWidget {
     this.borderRadius = 100.0,
     this.loading = false,
     this.onTap,
+    this.spinnerColor,
   }) : super(key: key);
 
   final Widget child;
   final Color color;
-
+  final Color spinnerColor;
   final double height;
   final double borderRadius;
   final bool loading;
@@ -23,7 +24,9 @@ class CustomFlatButton extends StatelessWidget {
   Widget _buildSpinner(BuildContext context) {
     final ThemeData data = Theme.of(context);
     return Theme(
-      data: data.copyWith(accentColor: Colors.white70),
+      data: spinnerColor == null
+          ? data
+          : data.copyWith(accentColor: spinnerColor),
       child: SizedBox(
         width: 28,
         height: 28,
