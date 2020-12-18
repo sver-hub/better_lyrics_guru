@@ -32,16 +32,17 @@ dependencies:
   firebase_core: ^0.5.2+1
   flutter_hooks: ^0.15.0
   flutter_local_notifications: ^3.0.2
+  flutter_svg: null
   get_it: ^3.0.1
+  google_fonts: ^1.1.1
   google_sign_in: ^4.5.6
   hooks_riverpod: ^0.12.1
   http: ^0.12.0+2
+  lemmatizer: ^1.0.0
   moor: ^3.4.0
   path: ^1.7.0
   path_provider: ^1.6.24
   sqlite3_flutter_libs: ^0.2.0
-  flutter_svg: 
-  google_fonts: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/
+    - assets/logo/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

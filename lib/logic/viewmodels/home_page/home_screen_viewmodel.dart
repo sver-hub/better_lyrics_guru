@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/all.dart';
 
-import '../../../database/moor_database.dart';
+import '../../app_state/app_state.dart';
+
+final homeScreenViewModel = ChangeNotifierProvider<HomeScreenViewModel>((ref) {
+  final curUser = ref.read(currentUser);
+  return HomeScreenViewModel(curUser);
+});
 
 class HomeScreenViewModel extends ChangeNotifier {
-  UserDao userDataProvider;
+  HomeScreenViewModel(this.user);
+  final CurrentUser user;
 
-  HomeScreenViewModel(BuildContext context);
+  String get userName => user.name;
 }

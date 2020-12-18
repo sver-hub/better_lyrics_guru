@@ -6,15 +6,15 @@ class CustomFlatButton extends StatelessWidget {
     Key key,
     @required this.child,
     this.color,
-    this.textColor,
     this.height = 50.0,
     this.borderRadius = 100.0,
     this.loading = false,
     this.onTap,
   }) : super(key: key);
+
   final Widget child;
   final Color color;
-  final Color textColor;
+
   final double height;
   final double borderRadius;
   final bool loading;

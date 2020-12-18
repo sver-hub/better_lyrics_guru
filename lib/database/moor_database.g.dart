@@ -1748,11 +1748,11 @@ abstract class _$LyricsGuruDB extends GeneratedDatabase {
 // DaoGenerator
 // **************************************************************************
 
-mixin _$ArtistDaoMixin on DatabaseAccessor<LyricsGuruDB> {
-  $ArtistInfosTable get artistInfos => attachedDatabase.artistInfos;
-}
 mixin _$AlbumDaoMixin on DatabaseAccessor<LyricsGuruDB> {
   $AlbumInfosTable get albumInfos => attachedDatabase.albumInfos;
+}
+mixin _$ArtistDaoMixin on DatabaseAccessor<LyricsGuruDB> {
+  $ArtistInfosTable get artistInfos => attachedDatabase.artistInfos;
 }
 mixin _$TrackDaoMixin on DatabaseAccessor<LyricsGuruDB> {
   $TrackInfosTable get trackInfos => attachedDatabase.trackInfos;

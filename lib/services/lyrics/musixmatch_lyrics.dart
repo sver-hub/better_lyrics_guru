@@ -9,7 +9,6 @@ import 'lyrics_service.dart';
 
 class MusixmatchLyrics extends LyricsService {
   final _trackDao = db<TrackDao>();
-  //final _albumDao = db<AlbumDao>();
 
   Future<String> _fetchLyrics(String trackName, String artistName) async {
     final uri = Uri.https('api.musixmatch.com', '/ws/1.1/matcher.lyrics.get', {

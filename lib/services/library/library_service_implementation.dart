@@ -1,3 +1,8 @@
+import '../../logic/models/word.dart';
+
+import '../../logic/models/track.dart';
+import '../words/words_service.dart';
+
 import '../../database/db.dart';
 import '../../database/moor_database.dart';
 import '../../logic/models/album.dart';
@@ -7,10 +12,12 @@ import '../spotify/spotify_service.dart';
 import 'library_service.dart';
 
 class LibraryServiceImplementation extends LibraryService {
-  LibraryServiceImplementation(this._spotify, this._lyrics);
+  LibraryServiceImplementation(
+      this._spotifyService, this._lyricsService, this._wordsService);
 
-  final SpotifyService _spotify;
-  final LyricsService _lyrics;
+  final SpotifyService _spotifyService;
+  final LyricsService _lyricsService;
+  final WordsService _wordsService;
   final _artistDao = db<ArtistDao>();
   final _albumDao = db<AlbumDao>();
   final _trackDao = db<TrackDao>();
@@ -20,7 +27,7 @@ class LibraryServiceImplementation extends LibraryService {
     final artists = List<Artist>();
     final albums = List<Album>();
 
-    final savedTrackStream = _spotify.getStreamOfSavedTracks();
+    final savedTrackStream = _spotifyService.getStreamOfSavedTracks();
 
     await for (final track in savedTrackStream) {
       final album = track.album;
@@ -53,8 +60,13 @@ class LibraryServiceImplementation extends LibraryService {
     int remaining = tracks.length;
     yield remaining;
     for (final track in tracks) {
-      await _lyrics.fetchLyricsOfTrack(track);
+      await _lyricsService.fetchLyricsOfTrack(track);
       yield --remaining;
     }
+  }
+
+  @override
+  Future<List<Word>> getWordsOfTrack(Track track) async {
+    return await _wordsService.analyseLyrics(track);
   }
 }

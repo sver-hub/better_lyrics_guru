@@ -120,6 +120,7 @@ class SignInScreen extends StatelessWidget {
           assetName: 'assets/go-logo.png',
           text: Strings.signInWithGoogle,
           onTap: isLoading ? null : () => _signInWithGoogle(context),
+          loading: isLoading,
           color: Colors.white,
         ),
         SizedBox(height: 8),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../logic/app_state/app_state.dart';
 import '../../../logic/models/artist.dart';
 import '../../../logic/viewmodels/library_page/library_screen_viewmodel.dart';
 import '../../navigation/route_generators/library_route_generator.dart';
@@ -11,6 +10,7 @@ import '../../navigation/route_generators/library_route_generator.dart';
 class LibraryScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final model = useProvider(libraryScreenViewModel);
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -18,8 +18,8 @@ class LibraryScreen extends HookWidget {
         physics: BouncingScrollPhysics(),
         slivers: [
           _buildTitle(),
-          _buildButtons(),
-          _buildList(),
+          _buildButtons(model),
+          _buildList(model),
         ],
       ),
     );
@@ -39,33 +39,27 @@ class LibraryScreen extends HookWidget {
     );
   }
 
-  Widget _buildButtons() {
-    final state = useProvider(libraryState);
-    return Builder(
-      builder: (context) => SliverToBoxAdapter(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () => state.isLoading
-                  ? null
-                  : context.read(libraryScreenViewModel).dowloadLibrary(),
-            ),
-            SizedBox(width: 40),
-            IconButton(
-                icon: Icon(Icons.download_sharp),
-                onPressed: () => state.isLoading
-                    ? null
-                    : context.read(libraryScreenViewModel).downloadLyrics()),
-          ],
-        ),
+  Widget _buildButtons(LibraryScreenViewModel model) {
+    return SliverToBoxAdapter(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () =>
+                model.state.isLoading ? null : model.dowloadLibrary(),
+          ),
+          SizedBox(width: 40),
+          IconButton(
+              icon: Icon(Icons.download_sharp),
+              onPressed: () =>
+                  model.state.isLoading ? null : model.downloadLyrics()),
+        ],
       ),
     );
   }
 
-  Widget _buildList() {
-    final model = useProvider(libraryScreenViewModel);
+  Widget _buildList(LibraryScreenViewModel model) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) => _ArtistPreview(model.artists[index]),

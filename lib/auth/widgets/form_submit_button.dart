@@ -16,7 +16,6 @@ class FormSubmitButton extends CustomFlatButton {
           ),
           height: 44.0,
           color: Colors.indigo,
-          textColor: Colors.black87,
           loading: loading,
           onTap: onTap,
         );

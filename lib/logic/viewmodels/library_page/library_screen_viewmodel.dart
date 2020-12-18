@@ -34,6 +34,8 @@ class LibraryScreenViewModel extends ChangeNotifier {
     loadData();
   }
 
+  LibraryState get state => _libraryState;
+
   void loadData() async {
     _artistDao.watchAllArtists().listen((updatedList) {
       _artists = updatedList;

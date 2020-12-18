@@ -10,6 +10,7 @@ class SocialSignInButton extends CustomFlatButton {
     Color color,
     Color textColor,
     VoidCallback onTap,
+    bool loading = false,
   }) : super(
           key: key,
           child: Row(
@@ -28,6 +29,7 @@ class SocialSignInButton extends CustomFlatButton {
           ),
           color: color,
           onTap: onTap,
+          loading: loading,
         );
 }
 
@@ -43,7 +45,6 @@ class SignInButton extends CustomFlatButton {
           key: key,
           child: Text(text, style: TextStyle(color: textColor, fontSize: 15.0)),
           color: color,
-          textColor: textColor,
           height: height,
           onTap: onTap,
         );

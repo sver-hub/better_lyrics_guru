@@ -75,6 +75,7 @@ class SpotifyAuthScreen extends HookWidget {
               text: 'Sign In on Spotify',
               onTap: () =>
                   _isLoading.value ? null : _signInSpotify(context, _isLoading),
+              loading: _isLoading.value,
               color: Colors.white,
             ),
           ],

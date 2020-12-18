@@ -139,7 +139,6 @@ class _AlbumPreview extends StatelessWidget {
                 child: Text(
                   album.artist.name,
                   style: TextStyle(
-                    color: Colors.white54,
                     fontSize: 15,
                     letterSpacing: 0.8,
                   ),
