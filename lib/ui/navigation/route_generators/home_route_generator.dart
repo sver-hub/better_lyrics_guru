@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../views/home_page/home_screen.dart';
 import '../../views/home_page/profile_screen.dart';
-import 'page_route_transition.dart';
+import 'transitions/page_route_transition.dart';
 
 class HomeRouteGenerator {
   static const PROFILE = '/profile';

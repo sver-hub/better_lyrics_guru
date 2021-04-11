@@ -32,7 +32,7 @@ dependencies:
   firebase_core: ^0.5.2+1
   flutter_hooks: ^0.15.0
   flutter_local_notifications: ^3.0.2
-  flutter_svg: null
+  # flutter_svg: 
   get_it: ^3.0.1
   google_fonts: ^1.1.1
   google_sign_in: ^4.5.6

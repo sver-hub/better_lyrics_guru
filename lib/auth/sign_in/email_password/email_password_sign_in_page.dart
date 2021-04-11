@@ -160,7 +160,7 @@ class _EmailPasswordSignInPageState extends State<EmailPasswordSignInPage> {
             onTap: model.isLoading ? null : _submit,
           ),
           SizedBox(height: 8.0),
-          FlatButton(
+          TextButton(
             key: Key('secondary-button'),
             child: Text(model.secondaryButtonText),
             onPressed: model.isLoading
@@ -168,7 +168,7 @@ class _EmailPasswordSignInPageState extends State<EmailPasswordSignInPage> {
                 : () => _updateFormType(model.secondaryActionFormType),
           ),
           if (model.formType == EmailPasswordSignInFormType.signIn)
-            FlatButton(
+            TextButton(
               key: Key('tertiary-button'),
               child: Text(Strings.forgotPasswordQuestion),
               onPressed: model.isLoading

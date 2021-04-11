@@ -20,13 +20,17 @@ class MusixmatchLyrics extends LyricsService {
 
     final json = jsonDecode((await http.get(uri)).body);
 
-    if (json['message'] == null ||
-        json['message']['header'] == null ||
-        json['message']['header']['status_code'] != 200 ||
-        json['message']['body'] == null ||
-        json['message']['body']['lyrics'] == null ||
-        json['message']['body']['lyrics']['lyrics_body'] == null ||
-        json['message']['body']['lyrics']['lyrics_body'] == '') return null;
+    if (json['message'] == null || json['message']['header'] == null) {
+      return null;
+    } else if (json['message']['header']['status_code'] != 200) {
+      return 'Not Available';
+    } else if (json['message']['body'] == null ||
+        json['message']['body']['lyrics'] == null) {
+      return null;
+    } else if (json['message']['body']['lyrics']['lyrics_body'] == null ||
+        json['message']['body']['lyrics']['lyrics_body'] == '') {
+      return 'Instrumental';
+    }
 
     String lyrics = json['message']['body']['lyrics']['lyrics_body'];
     lyrics = lyrics.replaceRange(

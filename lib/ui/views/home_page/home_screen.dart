@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_svg/svg.dart';
+// import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/all.dart';
+import 'package:lyrics_guru/auth/constants/strings.dart';
+import 'package:lyrics_guru/auth/services/auth_service.dart';
+import 'package:lyrics_guru/ui/widgets/platform_alert_dialog.dart';
+import 'package:lyrics_guru/ui/widgets/platform_exception_alert_dialog.dart';
 
 import '../../../logic/app_state/app_state.dart';
 import '../../../logic/models/album.dart';
@@ -12,28 +17,28 @@ import '../../theme/palette.dart';
 import '../../widgets/widgets.dart';
 
 class HomePage extends HookWidget {
-  // Future<void> _signOut(BuildContext context) async {
-  //   try {
-  //     await context.read(authService).signOut();
-  //   } on PlatformException catch (e) {
-  //     await PlatformExceptionAlertDialog(
-  //       title: Strings.logoutFailed,
-  //       exception: e,
-  //     ).show(context);
-  //   }
-  // }
+  Future<void> _signOut(BuildContext context) async {
+    try {
+      await context.read(authService).signOut();
+    } on PlatformException catch (e) {
+      await PlatformExceptionAlertDialog(
+        title: Strings.logoutFailed,
+        exception: e,
+      ).show(context);
+    }
+  }
 
-  // Future<void> _confirmSignOut(BuildContext context) async {
-  //   final didRequestSignOut = await PlatformAlertDialog(
-  //     title: Strings.logout,
-  //     content: Strings.logoutAreYouSure,
-  //     cancelActionText: Strings.cancel,
-  //     defaultActionText: Strings.logout,
-  //   ).show(context);
-  //   if (didRequestSignOut == true) {
-  //     _signOut(context);
-  //   }
-  // }
+  Future<void> _confirmSignOut(BuildContext context) async {
+    final didRequestSignOut = await PlatformAlertDialog(
+      title: Strings.logout,
+      content: Strings.logoutAreYouSure,
+      cancelActionText: Strings.cancel,
+      defaultActionText: Strings.logout,
+    ).show(context);
+    if (didRequestSignOut == true) {
+      _signOut(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +65,8 @@ class HomePage extends HookWidget {
         children: [
           GestureDetector(
             onTap: () => print('settings'),
-            child: SvgPicture.asset(
-              'assets/icons/settings.svg',
-              width: 22.0,
-              height: 22.0,
-            ),
+            onLongPress: () => _confirmSignOut(context),
+            child: Icon(Icons.settings),
           )
         ],
       ),

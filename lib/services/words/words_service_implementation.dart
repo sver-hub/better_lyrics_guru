@@ -6,6 +6,11 @@ import '../../logic/models/track.dart';
 import '../../logic/models/word.dart';
 import 'words_service.dart';
 
+extension on String {
+  String capitalize() =>
+      '${this[0].toUpperCase()}${this.substring(1).toLowerCase()}';
+}
+
 class WordsServiceImplementation extends WordsService {
   static final wordPattern = RegExp(r"[A-Za-z']+");
   static final filterWords =
@@ -48,7 +53,7 @@ class WordsServiceImplementation extends WordsService {
         }
       }
     }
-    return filtered.toList();
+    return filtered.map((e) => e.capitalize()).toList();
   }
 
   Future<Word> _addToDb(String w, Track track) async {

@@ -7,7 +7,7 @@ import '../../views/library_page/album_screen.dart';
 import '../../views/library_page/artist_screen.dart';
 import '../../views/library_page/library_screen.dart';
 import '../../views/library_page/track_screen.dart';
-import 'page_route_transition.dart';
+import 'transitions/page_route_transition.dart';
 
 class LibraryRouteGenerator {
   static const ARTIST = '/artist';

@@ -24,8 +24,8 @@ class LibraryServiceImplementation extends LibraryService {
 
   @override
   Future<void> loadFavouriteTracks() async {
-    final artists = List<Artist>();
-    final albums = List<Album>();
+    final artists = <Artist>[];
+    final albums = <Album>[];
 
     final savedTrackStream = _spotifyService.getStreamOfSavedTracks();
 

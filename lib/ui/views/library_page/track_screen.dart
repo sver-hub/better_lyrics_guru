@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
-import '../../../logic/viewmodels/library_page/track_screen_viewmodel.dart';
-import '../../widgets/custom_flat_button.dart';
 
 import '../../../logic/models/track.dart';
+import '../../../logic/viewmodels/library_page/track_screen_viewmodel.dart';
+import '../../widgets/custom_flat_button.dart';
+import '../../widgets/return_widget.dart';
 
 class TrackScreen extends HookWidget {
   final Track track;
@@ -19,47 +20,18 @@ class TrackScreen extends HookWidget {
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 20, 20, 20),
-            child: _buildReturn(context),
-          ),
+          ReturnWidget(title: 'Back to ' + track.album.name),
           _buildName(),
           Divider(color: Colors.grey[700], thickness: 1),
           SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: _buildLyrics(),
+            child: _buildLyrics(model),
           ),
           _buildButton(context, model),
-          SizedBox(
-            height: 30,
-          ),
+          SizedBox(height: 30),
         ],
       ),
-    );
-  }
-
-  Widget _buildReturn(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width - 80,
-          child: Text(
-            'Back to ' + track.album.name,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ),
-      ],
     );
   }
 
@@ -97,10 +69,10 @@ class TrackScreen extends HookWidget {
     );
   }
 
-  Widget _buildLyrics() {
+  Widget _buildLyrics(TrackScreenViewModel model) {
     return Column(
       children: [
-        ..._getLines(track.lyrics).map(
+        ...model.lyrics.map(
           (e) => Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: SizedBox(
@@ -128,16 +100,7 @@ class TrackScreen extends HookWidget {
       color: Colors.indigo,
       loading: model.analyzing,
       spinnerColor: Colors.white,
-      onTap: () => model.analyzeTrack(),
+      onTap: () => model.analyzeTrack(Navigator.of(context)),
     );
-  }
-
-  List<String> _getLines(String text) {
-    if (text == null)
-      return [
-        'Either This Track Is Instrumental',
-        'Or Lyrics Are Not Accessible'
-      ];
-    return text.split('\n');
   }
 }

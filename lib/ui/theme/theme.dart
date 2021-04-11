@@ -17,22 +17,21 @@ final textTheme = TextTheme(
   // ),
   headline2: GoogleFonts.cabin(
     fontSize: 30,
-    fontWeight: FontWeight.w300,
-    letterSpacing: -0.5,
+    fontWeight: FontWeight.bold,
   ),
   headline3: GoogleFonts.cabin(
     fontSize: 24,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w600,
     color: Colors.black,
   ),
-  // headline4: GoogleFonts.cabin(
-  //   fontSize: 37,
-  //   fontWeight: FontWeight.w500,
-  //   letterSpacing: 0.25,
-  // ),
+  headline4: GoogleFonts.cabin(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  ),
   headline5: GoogleFonts.cabin(
     fontSize: 18,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w600,
     color: Color(0xFF555555),
   ),
   // headline6: GoogleFonts.cabin(
@@ -49,7 +48,7 @@ final textTheme = TextTheme(
   subtitle2: GoogleFonts.cabin(
     fontSize: 15,
     // fontWeight: FontWeight.w500,
-    letterSpacing: 0.1,
+    letterSpacing: 0.8,
   ),
   bodyText1: GoogleFonts.roboto(
     fontSize: 14,
